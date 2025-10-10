@@ -1,5 +1,6 @@
 import { AIToolCard } from "@/components/AIToolCard";
-import { GraduationCap } from "lucide-react";
+import { PromptIdeaCard } from "@/components/PromptIdeaCard";
+import { GraduationCap, Code } from "lucide-react";
 
 const aiTools = [
   {
@@ -34,31 +35,132 @@ const aiTools = [
   }
 ];
 
+const promptIdeas = [
+  {
+    title: "Трекер привычек (неделя)",
+    description: "Галочки по дням, прогресс‑бар, фильтр «сегодня/неделя».",
+    prompt: "Собери одностраничный трекер привычек (таблица 7×N), сохраняй состояние в localStorage (habits:v1). Экспорт/Импорт JSON, сброс, и прогресс‑бар по неделе."
+  },
+  {
+    title: "Pomodoro‑таймер",
+    description: "Рабочие/перерывы, настраиваемые длительности, звук.",
+    prompt: "Сделай Pomodoro‑таймер с настройками (work/break/long, автопереход), храни настройки и историю сессий в localStorage (pomodoro:v1), добавь кнопки экспорт/импорт."
+  },
+  {
+    title: "To‑Do с приоритетами и тегами",
+    description: "Быстрый ввод, фильтры, хоткеи (Enter, @tag, !prio).",
+    prompt: "Одностраничный To‑Do без фреймворков: задачи, теги, приоритеты, поиск; всё состояние в localStorage (todo:v1), hotkeys, экспорт/импорт, счётчики по тегам."
+  },
+  {
+    title: "Канбан‑борд (Backlog/Doing/Done)",
+    description: "Drag‑and‑drop колонок и карточек.",
+    prompt: "Канбан с DnD, кастомные колонки, поиск по карточкам; сохраняй доску в localStorage (kanban:v1), добавь экспорт/импорт и синхронизацию между вкладками через storage‑event."
+  },
+  {
+    title: "Reading/Watch‑лист",
+    description: "Ссылки + заметки + статус (to read/watching/done).",
+    prompt: "Список чтения/просмотра: поле URL, название, заметка, статус; сохрани в localStorage (list:v1), фильтры по статусу, импорт/экспорт в JSON."
+  },
+  {
+    title: "Мини‑учёт расходов (несекретно)",
+    description: "Категории, суммы, график по категориям.",
+    prompt: "Трекер расходов (категория, сумма, дата, заметка) с диаграммой; данные в localStorage (spend:v1), фильтры по периоду, экспорт/импорт."
+  },
+  {
+    title: "Менеджер цветовых палитр",
+    description: "Пипетка (input color), копирование HEX/RGB.",
+    prompt: "Генератор/хранилище цветовых палитр с предварительным просмотром; храни палитры в localStorage (palette:v1), кнопки copy, экспорт/импорт."
+  },
+  {
+    title: "Панель фич‑флагов/настроек для прототипа",
+    description: "Тумблеры: dark‑mode, компактный вид, анимации.",
+    prompt: "Панель \"Settings\" с фич‑флагами; при переключении сохраняй в localStorage (flags:v1) и сразу применяй классы к <body>; экспорт/импорт профилей."
+  },
+  {
+    title: "Мини‑конструктор форм",
+    description: "Добавляй поля (текст, число, выбор), сохраняй схему.",
+    prompt: "Dynamic Form Builder: создавай поля, порядок, обязательность; схему и введённые данные храни в localStorage (forms:v1); экспорт схемы/данных в JSON."
+  },
+  {
+    title: "Менеджер промптов (шаблоны для ИИ)",
+    description: "Название, сам промпт, теги, копирование.",
+    prompt: "Каталог промпт‑шаблонов: имя, текст, теги, быстрый copy; сохраняй в localStorage (prompts:v1), поиск по тегам, экспорт/импорт."
+  },
+  {
+    title: "Интервальный/Tabata‑таймер",
+    description: "Наборы интервалов, сохранение тренировок.",
+    prompt: "Interval Timer: последовательности work/rest/rounds, сохраняй пресеты в localStorage (intervals:v1), звуки, экспорт/импорт."
+  },
+  {
+    title: "Доска обратной связи/роадмапа",
+    description: "Идеи → приоритизация (ICE/RICE), статусы.",
+    prompt: "Product feedback board: карточки идей, поля impact/effort, сортировка, статусы; храни всё в localStorage (roadmap:v1), экспорт/импорт."
+  },
+  {
+    title: "Генератор чек‑листов с шаблонами",
+    description: "Пак‑лист, релиз‑чек, on‑boarding.",
+    prompt: "Checklist maker: создавай шаблоны и инстансы чек‑листов; прогресс, клонирование; localStorage (checklist:v1), экспорт/импорт."
+  },
+  {
+    title: "Multi‑Tally (множественные счётчики)",
+    description: "Несколько счётчиков, горячие клавиши, быстрый сброс.",
+    prompt: "Multi‑counter с именами, горячими клавишами (+/−), суммой; сохраняй в localStorage (tally:v1), экспорт/импорт."
+  },
+  {
+    title: "Локальный опрос/голосовалка",
+    description: "Вопросы, варианты, результаты (без бэкенда).",
+    prompt: "Quick Poll: создавай вопросы и варианты, голосование локально; localStorage (poll:v1); показывай диаграмму, экспорт результатов."
+  },
+  {
+    title: "Флэшкарты (упрощённый SRS)",
+    description: "Колоды, отметки «знаю/повторить».",
+    prompt: "Flashcards: создавай/редактируй колоды, режим обучения (show/hide), прогресс; храни в localStorage (cards:v1), экспорт/импорт."
+  },
+  {
+    title: "UTM‑генератор",
+    description: "Предустановки кампаний, валидация, copy URL.",
+    prompt: "UTM builder: форма (source, medium, campaign…), кнопка \"Сгенерировать URL\", пресеты; localStorage (utm:v1), экспорт/импорт пресетов."
+  },
+  {
+    title: "Конвертер единиц с «избранным»",
+    description: "Частые конверсии, быстрый доступ.",
+    prompt: "Unit converter: категории (длина/вес/температура…), добавляй избранные конверсии; localStorage (units:v1), экспорт/импорт."
+  },
+  {
+    title: "Брейншторм названий/идей с «избранным»",
+    description: "Генератор + список избранных, заметки к вариантам.",
+    prompt: "Idea/name collector: поле генерации и список \"избранное\"; localStorage (ideas:v1), поиск/теги, экспорт/импорт."
+  },
+  {
+    title: "Recipe box + план питания",
+    description: "Рецепты, теги, недельный план, список покупок.",
+    prompt: "Recipe box: карточки рецептов (ингредиенты, шаги, теги), неделя‑план и авто‑генерация списка покупок; всё в localStorage (recipes:v1), экспорт/импорт."
+  }
+];
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header with gradient */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-primary to-secondary py-16 px-4">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTEwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMC0xMGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6Ij48L3BhdGg+PC9nPjwvZz48L3N2Zz4=')] opacity-10" />
-        
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center justify-center p-3 bg-white/20 rounded-full mb-6 backdrop-blur-sm">
-            <GraduationCap className="w-8 h-8 text-white" />
+      {/* Header */}
+      <div className="border-b border-border bg-background py-12 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="inline-flex items-center justify-center p-2 border border-border bg-card mb-4">
+            <GraduationCap className="w-6 h-6 text-foreground" />
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
             AI Конструкторы для Урока
           </h1>
           
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
+          <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
             Коллекция лучших AI-инструментов для создания веб-приложений, дизайна и программирования
           </p>
         </div>
       </div>
 
       {/* Main content */}
-      <main className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <main className="max-w-6xl mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
           {aiTools.map((tool, index) => (
             <AIToolCard
               key={index}
@@ -71,39 +173,68 @@ const Index = () => {
         </div>
 
         {/* Instructions section */}
-        <div className="mt-16 p-8 rounded-2xl bg-muted/50 border border-border">
-          <h2 className="text-2xl font-semibold text-foreground mb-4">
+        <div className="mb-12 p-6 border border-border bg-card">
+          <h2 className="text-lg font-semibold text-foreground mb-4">
             Инструкция для учеников
           </h2>
           
-          <div className="space-y-3 text-muted-foreground">
-            <p className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-semibold">1</span>
+          <div className="space-y-2 text-sm text-muted-foreground">
+            <p className="flex items-start gap-2">
+              <span className="flex-shrink-0 w-5 h-5 border border-border bg-background flex items-center justify-center text-xs font-bold">1</span>
               <span>Выберите интересующий вас AI-инструмент из списка выше</span>
             </p>
             
-            <p className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-semibold">2</span>
-              <span>Нажмите на кнопку "Открыть и зарегистрироваться"</span>
+            <p className="flex items-start gap-2">
+              <span className="flex-shrink-0 w-5 h-5 border border-border bg-background flex items-center justify-center text-xs font-bold">2</span>
+              <span>Нажмите на кнопку "Открыть"</span>
             </p>
             
-            <p className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-semibold">3</span>
+            <p className="flex items-start gap-2">
+              <span className="flex-shrink-0 w-5 h-5 border border-border bg-background flex items-center justify-center text-xs font-bold">3</span>
               <span>Пройдите регистрацию на платформе (обычно через email или Google)</span>
             </p>
             
-            <p className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-semibold">4</span>
-              <span>Начните экспериментировать с AI и создавайте свои первые проекты!</span>
+            <p className="flex items-start gap-2">
+              <span className="flex-shrink-0 w-5 h-5 border border-border bg-background flex items-center justify-center text-xs font-bold">4</span>
+              <span>Попробуйте идеи с промптами ниже!</span>
             </p>
+          </div>
+        </div>
+
+        {/* Prompt Ideas Section */}
+        <div className="border-t border-border pt-8">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-2 border border-border bg-card">
+              <Code className="w-5 h-5 text-foreground" />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold text-foreground">
+                20 идей с промптами для экспериментов
+              </h2>
+              <p className="text-xs text-muted-foreground mt-1">
+                Скопируйте промпт и используйте в Lovable, Bolt, Replit или ChatGPT
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {promptIdeas.map((idea, index) => (
+              <PromptIdeaCard
+                key={index}
+                number={index + 1}
+                title={idea.title}
+                description={idea.description}
+                prompt={idea.prompt}
+              />
+            ))}
           </div>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="mt-16 py-8 border-t border-border">
-        <div className="max-w-6xl mx-auto px-4 text-center text-muted-foreground">
-          <p>Создано для урока по AI конструкторам • 2025</p>
+      <footer className="mt-12 py-6 border-t border-border">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <p className="text-xs text-muted-foreground">Создано для урока по AI конструкторам • 2025</p>
         </div>
       </footer>
     </div>
