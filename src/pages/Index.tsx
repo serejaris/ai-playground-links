@@ -7,31 +7,36 @@ const aiTools = [
     name: "Lovable",
     description: "Создавайте полноценные веб-приложения с помощью AI. Идеально подходит для быстрого прототипирования и создания интерактивных сайтов.",
     url: "https://lovable.dev/invite/0aaed065-f44c-4ed9-ab8d-ed251ce0f6fa",
-    category: "Веб-разработка"
+    category: "Веб-разработка",
+    supportsGithub: false
   },
   {
     name: "Replit",
-    description: "Онлайн IDE с AI-помощником. Пишите код на любом языке программирования прямо в браузере, с поддержкой AI для генерации кода. Поддерживает интеграцию с GitHub.",
+    description: "Онлайн IDE с AI-помощником. Пишите код на любом языке программирования прямо в браузере, с поддержкой AI для генерации кода.",
     url: "https://replit.com/refer/serejaris",
-    category: "Программирование"
+    category: "Программирование",
+    supportsGithub: true
   },
   {
     name: "Bolt.new",
-    description: "AI-конструктор для создания веб-приложений. Быстро создавайте прототипы и полноценные проекты с помощью искусственного интеллекта. Поддерживает интеграцию с GitHub.",
+    description: "AI-конструктор для создания веб-приложений. Быстро создавайте прототипы и полноценные проекты с помощью искусственного интеллекта.",
     url: "https://bolt.new/?rid=hgko08",
-    category: "Веб-разработка"
+    category: "Веб-разработка",
+    supportsGithub: true
   },
   {
     name: "v0 by Vercel",
     description: "Генерируйте UI компоненты с помощью AI. Создавайте красивые интерфейсы просто описывая их словами.",
     url: "https://v0.dev",
-    category: "UI/UX Дизайн"
+    category: "UI/UX Дизайн",
+    supportsGithub: false
   },
   {
     name: "Figma Make",
     description: "AI-инструмент от Figma для создания дизайнов. Преобразуйте текстовые описания в готовые дизайн-концепты.",
     url: "https://www.figma.com/make/",
-    category: "Дизайн"
+    category: "Дизайн",
+    supportsGithub: false
   }
 ];
 
@@ -168,6 +173,7 @@ const Index = () => {
               description={tool.description}
               url={tool.url}
               category={tool.category}
+              supportsGithub={tool.supportsGithub}
             />
           ))}
         </div>
