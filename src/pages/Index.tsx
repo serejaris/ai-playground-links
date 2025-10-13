@@ -5,35 +5,35 @@ import { GraduationCap, Code } from "lucide-react";
 const aiTools = [
   {
     name: "Lovable",
-    description: "Создавайте полноценные веб-приложения с помощью AI. Идеально подходит для быстрого прототипирования и создания интерактивных сайтов.",
+    description: "Конструктор, который генерирует рабочие веб-приложения по текстовому описанию. Удобен для быстрых прототипов, интеграций и демонстраций без ручной верстки.",
     url: "https://lovable.dev/invite/0aaed065-f44c-4ed9-ab8d-ed251ce0f6fa",
     category: "Веб-разработка",
     supportsGithub: false
   },
   {
     name: "Replit",
-    description: "Онлайн IDE с AI-помощником. Пишите код на любом языке программирования прямо в браузере, с поддержкой AI для генерации кода.",
+    description: "Облачная IDE с ассистентом Ghostwriter: редактируйте, запускайте и деплойте код прямо в браузере, получая подсказки и автодополнение от AI.",
     url: "https://replit.com/refer/serejaris",
     category: "Программирование",
     supportsGithub: true
   },
   {
     name: "Bolt.new",
-    description: "AI-конструктор для создания веб-приложений. Быстро создавайте прототипы и полноценные проекты с помощью искусственного интеллекта.",
+    description: "Генератор интерфейсов на базе AI, который собирает React-приложения из вашего промпта. Помогает сверстать MVP и сразу выгружает код.",
     url: "https://bolt.new/?rid=hgko08",
     category: "Веб-разработка",
     supportsGithub: true
   },
   {
     name: "v0 by Vercel",
-    description: "Генерируйте UI компоненты с помощью AI. Создавайте красивые интерфейсы просто описывая их словами.",
+    description: "Сервис от Vercel, который превращает промпты в готовые компоненты shadcn/ui. Полезен для быстрых макетов и UI-итераций.",
     url: "https://v0.dev",
     category: "UI/UX Дизайн",
     supportsGithub: false
   },
   {
     name: "Figma Make",
-    description: "AI-инструмент от Figma для создания дизайнов. Преобразуйте текстовые описания в готовые дизайн-концепты.",
+    description: "Набор AI-функций Figma: генерируйте композиции, иллюстрации и варианты дизайна на основе текстовых подсказок.",
     url: "https://www.figma.com/make/",
     category: "Дизайн",
     supportsGithub: false
@@ -152,13 +152,13 @@ const Index = () => {
           <div className="inline-flex items-center justify-center p-2 border border-border bg-card mb-4">
             <GraduationCap className="w-6 h-6 text-foreground" />
           </div>
-          
+
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
             AI-Билдеры
           </h1>
-          
+
           <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
-            Коллекция лучших AI-инструментов для создания веб-приложений, дизайна и программирования
+            Подборка проверенных AI-инструментов и учебных промптов, которые помогают быстро собирать прототипы, дизайн-концепты и учебные проекты.
           </p>
         </div>
       </div>
@@ -181,28 +181,33 @@ const Index = () => {
         {/* Instructions section */}
         <div className="mb-12 p-6 border border-border bg-card">
           <h2 className="text-lg font-semibold text-foreground mb-4">
-            Инструкция для учеников
+            Как работать с подборкой
           </h2>
-          
+
           <div className="space-y-2 text-sm text-muted-foreground">
             <p className="flex items-start gap-2">
               <span className="flex-shrink-0 w-5 h-5 border border-border bg-background flex items-center justify-center text-xs font-bold">1</span>
-              <span>Выберите интересующий вас AI-инструмент из списка выше</span>
+              <span>Выберите инструмент под задачу: код, дизайн или генерация интерфейсов.</span>
             </p>
-            
+
             <p className="flex items-start gap-2">
               <span className="flex-shrink-0 w-5 h-5 border border-border bg-background flex items-center justify-center text-xs font-bold">2</span>
-              <span>Нажмите на кнопку "Открыть"</span>
+              <span>Перейдите по ссылке и зарегистрируйтесь (обычно достаточно аккаунта Google или GitHub).</span>
             </p>
-            
+
             <p className="flex items-start gap-2">
               <span className="flex-shrink-0 w-5 h-5 border border-border bg-background flex items-center justify-center text-xs font-bold">3</span>
-              <span>Пройдите регистрацию на платформе (обычно через email или Google)</span>
+              <span>Изучите интерфейс: посмотрите примеры, гайды и готовые шаблоны, если они есть.</span>
             </p>
-            
+
             <p className="flex items-start gap-2">
               <span className="flex-shrink-0 w-5 h-5 border border-border bg-background flex items-center justify-center text-xs font-bold">4</span>
-              <span>Попробуйте идеи с промптами ниже!</span>
+              <span>Возьмите одну из идей ниже, скопируйте промпт и протестируйте работу конструктора.</span>
+            </p>
+
+            <p className="flex items-start gap-2">
+              <span className="flex-shrink-0 w-5 h-5 border border-border bg-background flex items-center justify-center text-xs font-bold">5</span>
+              <span>Сохраните результат и поделитесь им с одноклассниками или преподавателем.</span>
             </p>
           </div>
         </div>
