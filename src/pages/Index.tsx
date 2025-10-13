@@ -154,7 +154,7 @@ const Index = () => {
           </div>
           
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-            AI Конструкторы для Урока
+            AI-Билдеры
           </h1>
           
           <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
